@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row alpha text-center">
+            <h1>My NFL Roster</h1>
+            <div class="col-md-6 player-roster">
+                <!-- <div class="row innera player-card">
+                    <img src="http://s.nflcdn.com/static/content/public/image/fantasy/transparent/200x200/" alt="">
+                    <h4>Player name here</h4>
+                    <h6>Position here</h6>
+                    <h6>Team here</h6>
+                </div> -->
+            </div>
+            <div class="col-md-6 my-team">
+
+            </div>
+
+
+        </div>
+        <div class="row beta text-center">
+            
+            <form action="">
+                <div class="form-group">
+                    <input type="text" id="get-player-by-name" class="form-control" name="player" placeholder="Player Name" />
+                    <button type="button" onclick="app.controllers.playersController.getPlayersByName()">Search by Player</button>
+                </div>
+                <div class="form-group">
+                    <input  id="get-player-by-team" type="text" class="form-control" name="team" placeholder="Team Name" />
+                    <button type="button" onclick="app.controllers.playerController.getPlayersByTeam()">Search by Team</button>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="get-player-by-position" class="form-control" name="position" placeholder="Position" />
+                    <button type="button" onclick="app.controllers.playerController.getPlayersByPosition()">Search by Position</button>
+                </div>
+            </form>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="app/player/players-service.js"></script>
+    <script src="app/player/players-controller.js"></script>
+    <script src="app/init.js"></script>
+
+
+
+
+</body>
+
+</html>
