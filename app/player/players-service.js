@@ -1,25 +1,70 @@
-var PlayersService = function (callback) {
+function PlayersService(callback) {
     var endpointUri = "http://api.cbssports.com/fantasy/players/list?version=3.0&SPORT=football&response_format=json";
     var playersData = [];
     var myPlayers = [];
 
+    this.getPlayersData = function () {
+        return JSON.parse(JSON.stringify(playersData))
+    }
+
+    this.getMyPlayers = function () {
+        return JSON.parse(JSON.stringify(myPlayers))
+    }
+
     this.getPlayersByTeam = function (teamName) {
         return playersData.filter(function (player) {
-            if (player.team == teamName) {
+            if (player.pro_team == teamName) {
                 return true;
             }
-        playersData.push(player)
         });
+
     }
+
+
 
     this.getPlayersByPosition = function (position) {
         return playersData.filter(function (player) {
-            if (player.poisition == poisition) {
+            if (player.position == position) {
                 return true;
             }
-        playersData.push(player)
+
+        });
+
+    }
+
+    this.getPlayersByName = function (name) {
+        return playersData.filter(function (player) {
+            if (player.fullname == name || player.firstname == name || player.lastname == name) {
+                return true;
+            }
         });
     }
+
+    this.addMyPlayers = function (id) {
+        for (i in playersData) {
+            var player = playersData[i]
+            if (player.id === id) {
+                myPlayers.push(player)
+            }
+
+
+        }
+        console.log(myPlayers)
+    }
+
+    this.removeMyPlayers = function (id) {
+        for (var i = 0; i < myPlayers.length; i++) {
+            var player = myPlayers[i]
+            if (player.id === id) {
+                myPlayers.splice(i, 1);
+                break;
+            }
+
+        }
+        console.log(myPlayers)
+    }
+    
+
 
     function loadPlayersData() {
 
@@ -30,16 +75,10 @@ var PlayersService = function (callback) {
         var localData = localStorage.getItem('playersData');
         if (localData) {
             playersData = JSON.parse(localData);
-            // return{
-            //     name: playersData.fullname,
-            //     image: playersData.photo,
-            //     position: playersData.position,
-            //     team: playersData.pro_team
-            // }
-            
+
+            console.log(playersData)
             return callback();
-            //return will short-circuit the loadPlayersData function
-            //this will prevent the code below from ever executing
+
 
         }
 
@@ -54,13 +93,7 @@ var PlayersService = function (callback) {
             localStorage.setItem('playersData', JSON.stringify(playersData))
             //console.log('Finished Writing Player Data to localStorage')
             callback()
-            // return{
-            //     name: playersData.fullname,
-            //     image: playersData.photo,
-            //     position: playersData.position,
-            //     team: playersData.pro_team
-            // }
-            // console.log(playersData)
+
         });
     }
     loadPlayersData(); //call the function above every time we create a new service
